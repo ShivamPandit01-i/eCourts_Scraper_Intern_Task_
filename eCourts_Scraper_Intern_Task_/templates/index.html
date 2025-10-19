@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>eCourts Cause List Downloader</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f7f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #ffffff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333333;
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555555;
+        }
+
+        input[type="text"], input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #cccccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            margin-top: 25px;
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: none;
+            background-color: #007bff;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        p {
+            margin-top: 20px;
+            text-align: center;
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>eCourts Cause List Downloader</h1>
+        <form method="POST">
+            <label for="state">State</label>
+            <input type="text" id="state" name="state" placeholder="Enter State Name" required>
+
+            <label for="district">District</label>
+            <input type="text" id="district" name="district" placeholder="Enter District Name" required>
+
+            <label for="court_complex">Court Complex</label>
+            <input type="text" id="court_complex" name="court_complex" placeholder="Enter Court Complex Name" required>
+
+            <label for="court_name">Court Name</label>
+            <input type="text" id="court_name" name="court_name" placeholder="Enter Court Name" required>
+
+            <label for="date">Date</label>
+            <input type="date" id="date" name="date" required>
+
+            <input type="submit" value="Fetch Cause List">
+        </form>
+
+        {% if message %}
+            <p>{{ message }}</p>
+        {% endif %}
+        {% if pdfs %}
+            <p>Downloaded PDFs: {{ pdfs|join(', ') }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>
